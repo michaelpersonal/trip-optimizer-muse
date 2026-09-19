@@ -58,10 +58,12 @@ Trip resolution order: explicit id → `default_trip` → error `NO_TRIP_CONTEXT
     }
   ],
   "logistics": [
-    {"heading": "Entry & visas", "body": "Pre-trip prep prose..."},
-    {"heading": "Payments & connectivity", "body": "..."},
-    {"heading": "Transport booking", "body": "..."},
-    {"heading": "Weather & packing", "body": "..."}
+    {"heading": "签证与入境", "body": "Pre-trip prep prose..."},
+    {"heading": "支付与通讯", "body": "..."},
+    {"heading": "交通预订", "body": "..."},
+    {"heading": "天气与穿着", "body": "..."},
+    {"heading": "行李与住宿须知", "body": "..."},
+    {"heading": "旅行保险", "body": "..."}
   ]
 }
 ```
@@ -71,7 +73,8 @@ Trip resolution order: explicit id → `default_trip` → error `NO_TRIP_CONTEXT
 - `period`: one of `morning | lunch | afternoon | dinner | evening`.
 - `id`: `seg_` + base36 timestamp + 4 random chars (uniqueness is what matters, not the exact scheme).
 - `score.components`: per-dimension scores from the last absolute scoring.
-- `details` is prose, never fragments — see `references/writing.md`. `why`, `skip_note`, `alternatives`, `theme`, `transition`, `logistics` are optional but a finished plan should use them: a plan without opinions, alternatives, or a logistics preamble is not done.
+- `details` is prose, never fragments — see `references/writing.md`. `why`, `skip_note`, `alternatives`, `theme`, `transition` are optional but a finished plan should use them: a plan without opinions, alternatives, or a logistics preamble is not done.
+- `logistics` (行前准备与后勤须知) is REQUIRED on every plan, with the standard sections (签证与入境， 支付与通讯， 交通预订， 天气与穿着， 行李与住宿须知， 旅行保险）. A plan without it is incomplete.
 
 ## `proposals/<proposal_id>.json`
 

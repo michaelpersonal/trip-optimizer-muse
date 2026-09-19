@@ -46,11 +46,23 @@ writer, not a database. Prose, not fragments. Every pick must earn its place.
 9. **Budget where money moves.** Per-day or per-segment cost estimates in the
    traveler's currency. No one should wonder what a day costs.
 
-10. **Logistics preamble.** Every plan opens with pre-trip sections:
-    entry/visa, payments + connectivity (SIM/eSIM, VPN if relevant, key apps),
-    transport booking (which app, how far ahead, foreign-passport gotchas),
-    weather + packing for the season, and group coordination if multi-traveler.
-    This is part of the plan, not an afterthought.
+10. **行前准备与后勤须知 is mandatory, not optional.** Every plan opens
+    with it, before Day 1, with these sections (adapted to the trip; omit
+    only what genuinely does not apply, never out of laziness):
+    - 签证与入境 — entry rules per passport, transit-visa traps (e.g. a
+      route that breaks a transit-visa zone), where to apply and lead times.
+    - 支付与通讯 — how money moves locally (cash vs card vs local wallets,
+      where to exchange, DCC traps), SIM/eSIM options, VPN if the country
+      blocks services, the 2–3 must-install local apps (maps, ride-hailing,
+      train booking, restaurant reviews) with what each is for.
+    - 交通预订 — intercity booking: which app/site, how far ahead, train
+      numbers if known (with the caveat that timetables change), foreign-
+      passport gotchas at ticket machines.
+    - 天气与穿着 — season-specific weather, what to pack, and per-city
+      rainy-day pivots (which indoor backup replaces which outdoor plan).
+    - 行李与住宿须知 — luggage strategy for the trip's transit pattern,
+      hotel booking notes (room config, adjoining rooms for groups).
+    - 旅行保险 — recommended coverage for the trip type.
 
 11. **Write for the traveler, not anyone.** Reference their constraints,
     their people, their stakes. A plan that could be for anyone feels like it

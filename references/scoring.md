@@ -18,6 +18,7 @@ Every trip's rubric gets a `narrative` dimension (~15% weight, rebalanced so wei
 - `alternatives` (1: single fixed path; 4: one backup; 7: labeled A/B/C options per day; 10: weather/mood/energy alternatives woven through every day)
 - `logistics_completeness` (1: nothing before Day 1; 4: a visa line; 7: entry, payments, transport booking covered; 10: full preamble — entry, payments/connectivity, transport booking, weather/packing, group coordination)
 - Penalty: any segment whose `details` is a fragment list rather than prose → −3 per occurrence (cap −15 on the dimension).
+- Penalty: plan missing the 行前准备与后勤须知 preamble → −8 on the dimension. This one is not judgment — it is a checklist item.
 
 ## Pass 1 — Dimension scoring
 Score the plan 0–100 per sub-dimension against the rubric anchors. One-sentence justification per score. Be honest, not generous: a good plan scores in the 70s–80s; 90+ should be rare.
