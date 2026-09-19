@@ -42,15 +42,26 @@ Trip resolution order: explicit id → `default_trip` → error `NO_TRIP_CONTEXT
           "type": "activity",
           "period": "evening",
           "title": "Shinjuku backstreet wandering",
-          "details": "Omoide Yokocho and the alleys two blocks east",
+          "details": "Omoide Yokocho and the alleys two blocks east. (Full prose paragraphs per references/writing.md — never fragments.)",
+          "why": "The story or reason this stop earns its place (history, human detail, technical marvel).",
+          "skip_note": "The famous nearby thing NOT worth it, and why.",
+          "alternatives": [{"label": "A", "text": "Rainy-day swap: ..."}],
           "location": "Shinjuku, Tokyo",
           "start_time": "18:00",
           "end_time": "21:00",
           "tags": ["wandering", "food"]
         }
       ],
+      "theme": "Day subtitle, e.g. 外滩、弄堂与梧桐树",
+      "transition": "One or two sentences connecting this day to the previous one (the emotional gear-shift).",
       "notes": ""
     }
+  ],
+  "logistics": [
+    {"heading": "Entry & visas", "body": "Pre-trip prep prose..."},
+    {"heading": "Payments & connectivity", "body": "..."},
+    {"heading": "Transport booking", "body": "..."},
+    {"heading": "Weather & packing", "body": "..."}
   ]
 }
 ```
@@ -60,6 +71,7 @@ Trip resolution order: explicit id → `default_trip` → error `NO_TRIP_CONTEXT
 - `period`: one of `morning | lunch | afternoon | dinner | evening`.
 - `id`: `seg_` + base36 timestamp + 4 random chars (uniqueness is what matters, not the exact scheme).
 - `score.components`: per-dimension scores from the last absolute scoring.
+- `details` is prose, never fragments — see `references/writing.md`. `why`, `skip_note`, `alternatives`, `theme`, `transition`, `logistics` are optional but a finished plan should use them: a plan without opinions, alternatives, or a logistics preamble is not done.
 
 ## `proposals/<proposal_id>.json`
 

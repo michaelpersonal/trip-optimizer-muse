@@ -39,6 +39,10 @@ def _request(method, path, body=None):
         raise RuntimeError(f"unsupported credential placement: {placement!r}")
 
     cmd = ["curl", "-sS", "--max-time", "60", "-X", method, url]
+    # The egress gateway's DNS returns a stale/wrong A record for
+    # tripoptimizer.duckdns.org (198.18.6.116); real DNS says 129.80.204.172.
+    # --resolve pins the correct IP without touching the hostname (TLS stays valid).
+    cmd += ["--resolve", "tripoptimizer.duckdns.org:443:129.80.204.172"]
     data_file = None
     if body is not None:
         data_file = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False)

@@ -52,7 +52,7 @@ All state lives on the service; the API is the only interface. Per trip the serv
 ### Init a new trip
 1. Interview: language (en|zh) first, then dates, cities (with min/max days each), travelers, budget, vibes, anti-patterns, dietary, loyalty program.
 2. `POST /v1/trips` with name + inline constraints (see openapi `POST /v1/trips` schema). Then `PUT .../constraints`, `PUT .../rubrics` (rubrics generated from constraints + learned signals per `references/scoring.md`).
-3. Generate the baseline plan and `PUT /v1/trips/<id>/plan` as `v_001`. The service renders `plan.md` and commits.
+3. Generate the baseline plan and `PUT /v1/trips/<id>/plan` as `v_001`. The service renders `plan.md` and commits. Write it to the narrative standard in `references/writing.md` — prose, not fragments; this is not optional polish, it is the plan.
 4. If language is zh: prompts, plans, and research use Chinese sources (小红书, 大众点评, 马蜂窝, 携程) and Simplified Chinese throughout.
 
 ### Research a city
@@ -78,5 +78,6 @@ Interview per day/activity: rating 1-5, better/expected/worse vs expectation, no
 5. The service keeps `plan.md` in sync with `plan.json` after every applied change.
 6. Respect `request_language` on proposals; default to the trip language.
 7. Source tags on research entries are load-bearing for scoring — never omit them.
-8. Quote version IDs, proposal IDs, and trip IDs exactly; never invent them.
-9. A 401/403 is a question about the request before a question about the key: confirm the request carried the credential (via `bin/trip.py`) before touching the connector.
+8. Plans are written to the narrative standard in `references/writing.md`. A plan whose segments are fragment lists is not a finished plan, and the scorer will penalize it.
+9. Quote version IDs, proposal IDs, and trip IDs exactly; never invent them.
+10. A 401/403 is a question about the request before a question about the key: confirm the request carried the credential (via `bin/trip.py`) before touching the connector.

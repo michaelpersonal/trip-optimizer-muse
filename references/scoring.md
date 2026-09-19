@@ -10,6 +10,15 @@ Generate `rubrics.yaml` from `constraints.yaml` + `profile.json` + `learned.json
 - Calibrate with learned signals: activities the user loved in past debriefs raise the anchors for similar types; hated ones become `adversarial_penalties` rules; `source_reliability` from `learned.json` adjusts how much you trust `activities_db` entries by source.
 - Include an `adversarial_penalties` list: concrete flaw patterns (unconfirmed bookings, chain restaurants as highlights, vague transit like "explore the city", 2hr+ queues on a packed day) with per-violation deductions.
 
+## Narrative dimension (always include)
+
+Every trip's rubric gets a `narrative` dimension (~15% weight, rebalanced so weights sum to 1). It scores the plan as a piece of writing per `references/writing.md`:
+- `prose_quality` (1: telegram fragments; 4: complete sentences but flat; 7: real paragraphs with some texture; 10: reads like a travel writer — sensory, specific, alive)
+- `opinionatedness` (1: endorses everything equally; 4: one mild opinion; 7: explicit skips with reasons; 10: strong takes + trade-off callouts that show judgment)
+- `alternatives` (1: single fixed path; 4: one backup; 7: labeled A/B/C options per day; 10: weather/mood/energy alternatives woven through every day)
+- `logistics_completeness` (1: nothing before Day 1; 4: a visa line; 7: entry, payments, transport booking covered; 10: full preamble — entry, payments/connectivity, transport booking, weather/packing, group coordination)
+- Penalty: any segment whose `details` is a fragment list rather than prose → −3 per occurrence (cap −15 on the dimension).
+
 ## Pass 1 — Dimension scoring
 Score the plan 0–100 per sub-dimension against the rubric anchors. One-sentence justification per score. Be honest, not generous: a good plan scores in the 70s–80s; 90+ should be rare.
 
