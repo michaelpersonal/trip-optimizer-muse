@@ -1,6 +1,6 @@
-# Tutorial: Turn Your Website into a Muse Connector
+# Tutorial: Turn Your Service into a Muse Connector
 
-This is the full playbook we used to turn Trip Optimizer — a trip-planning engine — into a working Muse custom connector. Follow it to expose your own website or API to Muse.
+This is the full playbook we used to turn Trip Optimizer — a trip-planning engine — into a working Muse custom connector. Follow it to expose your own service or API to Muse.
 
 ## What a Muse connector is
 
