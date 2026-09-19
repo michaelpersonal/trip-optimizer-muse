@@ -9,21 +9,22 @@ A connector lets Muse call your service on the user's behalf. Two flavors:
 - **Custom connector** (this tutorial): private to the user. You register your API's host, how it authenticates, and where the key goes. The user enters their key once through a secure form; Muse stores it in the Secure Vault and the agent never sees it again.
 - **Directory publishing** (muse.ai/platform): public listing. Requires a hosted multi-tenant service with your own terms of service and privacy policy, plus Meta review. A CLI tool on someone's laptop can't be a connector — it has to be a reachable HTTPS API.
 
-## Step 0 — Design: split reasoning from state
+## Step 0 — Decide where the smarts live
 
-The single most important decision. Muse is the reasoning layer; your service should be a **deterministic state machine**:
+This is the first real decision, and it's yours to make — there's no single right answer. Three common shapes:
 
-- The agent does all judgment: generating proposals, scoring, synthesis, Q&A.
-- Your service owns state and enforces invariants: versioning, idempotency, conflict detection, rendering.
+1. **Deterministic state service** (what we chose for Trip Optimizer). The agent does all the reasoning — generating proposals, scoring, synthesis, Q&A — and your service owns state and enforces invariants: versioning, idempotency, conflict detection, rendering. Your service needs no LLM keys and no inference billing; it stores facts and refuses invalid transitions.
+2. **Inference API.** Your service does its own reasoning (a model endpoint, a reranking API, a research agent). The connector just passes the key through, and the agent treats your service as a capability to call.
+3. **Thin proxy over an existing API.** No new service at all — you register the existing API's host and auth scheme, and the skill teaches the agent how to use its endpoints.
 
-This means your service needs **no LLM keys and no inference billing**. It just stores facts and refuses invalid transitions. For Trip Optimizer the invariants are:
+We picked option 1 because trip planning is a state-management problem with hard invariants, and the agent is already smart enough to do the judging. For Trip Optimizer those invariants are:
 
 1. Proposals are never auto-applied — apply only happens on explicit user approval.
 2. Applying a stale proposal returns `PROPOSAL_CONFLICT` (the plan moved past the proposal's base version).
 3. `plan.md` stays synchronized with `plan.json` after every applied change.
 4. The run log is append-only; it's the crash-recovery source of truth.
 
-Write these down first. They become your test plan later.
+Whatever shape you pick, write down the contract and the invariants first. They become your test plan in Step 6.
 
 ## Step 1 — Define the API contract
 
@@ -39,7 +40,7 @@ Write an OpenAPI spec before code. Ours (`openapi.yaml` in the service repo) def
 - `GET|PUT /v1/profile`
 - `DELETE /v1/trips/{id}`
 
-Keep the surface small and deterministic. Every endpoint should do exactly one state transition.
+Keep the surface small and explicit. Every endpoint should do one well-defined thing — one state transition if you chose the state-service shape, one inference call if you chose the model-API shape.
 
 ## Step 2 — Build the service
 
