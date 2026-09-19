@@ -1,5 +1,7 @@
 # trip-optimizer-muse
 
+![Turn your service into a Muse connector — the full Trip Optimizer playbook](assets/tutorial-banner.png)
+
 The Muse skill for Trip Optimizer: plan and optimize trips with the autoresearch pattern.
 
 ## Architecture
